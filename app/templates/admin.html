@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block title %}Admin Panel{% endblock %}
+{% block content %}
+<h1>Admin Panel</h1>
+<form method="POST">
+    <div class="form-group">
+        <label for="title">Ticket Title</label>
+        <input type="text" id="title" name="title" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="description">Ticket Description</label>
+        <textarea id="description" name="description" class="form-control" required></textarea>
+    </div>
+    <div class="form-group">
+        <label for="group">Assign Group</label>
+        <select id="group" name="group" class="form-control">
+            {% for group in groups %}
+                <option value="{{ group.name }}">{{ group.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Create Ticket</button>
+</form>
+<br>
+<h2>Existing Tickets</h2>
+<br>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Group</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ticket in tickets %}
+        <tr>
+            <td>{{ ticket.title }}</td>
+            <td>{{ ticket.description }}</td>
+            <td>{{ ticket.status }}</td>
+            <td>{{ ticket.group.name }}</td>
+            <td>
+                <form method="POST" action="{{ url_for('delete_ticket', ticket_id=ticket.id) }}">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

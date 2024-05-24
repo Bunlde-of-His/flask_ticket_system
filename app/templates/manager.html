@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block title %}Manager Panel{% endblock %}
+{% block content %}
+<h1>Manager Panel</h1>
+<br>
+<h2>Tickets for Group {{ current_user.group.name }}</h2>
+<br>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ticket in tickets %}
+        <tr>
+            <td>{{ ticket.title }}</td>
+            <td>{{ ticket.description }}</td>
+            <td>{{ ticket.status }}</td>
+            <td>
+                <form method="POST" action="{{ url_for('manager') }}">
+                    <input type="hidden" name="ticket_id" value="{{ ticket.id }}">
+                    <select name="status" class="form-control">
+                        <option value="Pending" {% if ticket.status == 'Pending' %}selected{% endif %}>Pending</option>
+                        <option value="In review" {% if ticket.status == 'In review' %}selected{% endif %}>In review</option>
+                        <option value="Closed" {% if ticket.status == 'Closed' %}selected{% endif %}>Closed</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary mt-2">Update Status</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

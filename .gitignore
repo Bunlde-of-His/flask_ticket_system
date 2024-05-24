@@ -1,0 +1,59 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+var/
+sdist/
+develop-eggs/
+.installed.cfg
+lib/
+lib64/
+*.pyo
+*.pyd
+
+# Flask specific
+instance/
+.webassets-cache
+
+# dotenv
+.env
+
+# IDEs and editors
+.idea/
+.vscode/
+*.swp
+*~
+.project
+.pydevproject
+.DS_Store
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+
+# Windows
+Thumbs.db
+ehthumbs.db
+*.log
+
+# Alembic
+migrations/versions/*.pyc
+migrations/versions/*.pyo
+migrations/versions/__pycache__
